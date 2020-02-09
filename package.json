@@ -8,8 +8,26 @@
 		"client",
 		"browser"
 	],
-	"author": "Frolov E. <frolov@amiriset.com>",
-	"contributors": [
-	],
-	"dependencies": {}
+	"author": "Frolov Y. <frolov@amiriset.com>",
+	"contributors": [],
+	"dependencies": {
+		"browser-sync": ">=2.2.3",
+		"del": ">=3.0.0",
+		"gulp": "3.9.1",
+		"gulp-stylus": ">=2.7.0",
+		"gulp-sourcemaps": ">=1.12.1",
+		"gulp-imagemin": ">=4.0.0",
+		"gulp-html-import": ">=0.0.2",
+		"gulp-htmlmin": ">=4.0.0",
+		"gulp-htmlhint": ">=2.0.0",
+		"gulp-autoprefixer": ">=2.1.0",
+		"gulp-csslint": ">=1.0.0",
+		"gulp-csso": ">=1.0.0",
+		"gulp-uncss": ">=1.0.6",
+		"gulp-rigger": ">=0.5.8",
+		"jshint": "latest",
+		"jshint-stylish": "latest",
+		"gulp-jshint": "latest",
+		"gulp-uglify": ">=3.0.0"
+	}
 }
