@@ -1,0 +1,46 @@
+/* Ball element. */
+.ball {
+  border-width: 4px;
+  border-radius: 50%;
+  position: absolute;
+  transition: all 1s;
+  top: 480px;
+
+  /* Start position left. */
+  &.left {
+    left: -100px;
+  }
+
+  /* Start position right. */
+  &.right {
+    left: 740px;
+  }
+
+  /* Simple ball decoration. */
+  &.value_1,
+  &.value_2,
+  &.value_3,
+  &.value_4,
+  &.value_5 {
+    border-style: solid;
+    border-color: silver;
+  }
+
+  /* 'Life' ball decoration. */
+  &.add_life{
+    border-style: dashed;
+    border-color: lightgreen;
+  }
+
+  /* 'Time' ball decoration. */
+  &.add_time {
+    border-style: dashed;
+    border-color: green;
+  }
+
+  /* 'Kill' ball decoration. */
+  &.rem_life {
+    border-style: dotted;
+    border-color: red;
+  }
+}
