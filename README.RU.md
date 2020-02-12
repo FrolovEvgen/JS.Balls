@@ -14,10 +14,14 @@
 
 ## Скриншоты
 
-
+![Screen1](/screenshots/screen1.jpg)
+![Screen2](/screenshots/screen2.jpg)
+![Screen3](/screenshots/screen3.jpg)
+![Screen4](/screenshots/screen4.jpg)
 
 ## Ссылка
 
+Готовый вариант: [JS.BAlls](http://gm.amiriset.com/jballs/)
 
 ## Проект
 
