@@ -12,8 +12,8 @@ Game generate couple objects. If player place mouse over object this kill it. Fo
 Game has some specified objects:
 
 * "_Extra Life_" - add an extra life to player. (Max. = 5).
-* "_Время_" - add 10 sec. to game time.
-* "_Киллер_" - kill player. 
+* "_Extra Time_" - add 10 sec. to game time.
+* "_Killer_" - kill player. 
 
 ## Screenshots
 
