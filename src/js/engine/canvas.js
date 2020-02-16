@@ -6,7 +6,7 @@
  */
 function createCanvas() {
     /**
-     * @typedef {object} Canvas
+     * @typedef {object} Canvas - 'Game Field' component.
      */
     return {
 
@@ -170,10 +170,11 @@ function createCanvas() {
          * @returns {BallConfig}
          */
         getRandomBallConfig: function() {
-            var ballConfig = { class: null, type: null, position: null, id: null};
+            var ballConfig = { class: null, type: null, position: null, id: null, rotate: 0};
             ballConfig.type = this.getRandomBallType();
             ballConfig.position = this.getRandomBallPosition();
             ballConfig.class = this.getRandomBallClass(ballConfig.type);
+            ballConfig.rotate = (random(360) - 180);
             return ballConfig;
         },
 

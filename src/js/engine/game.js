@@ -4,7 +4,7 @@
  */
 function createGame() {
     /**
-     * @typedef {object} Game
+     * @typedef {object} Game - Game application.
      */
 
     return {
@@ -17,7 +17,7 @@ function createGame() {
         // Start game component.
         _startBlock: null,
 
-        // Finish game component.
+        // End game component.
         _endBlock: null,
 
         // Game started.
@@ -48,7 +48,7 @@ function createGame() {
             this._el = createEl("div");
             this._el.id = this._id;
 
-            // Create and init 'Game field' component.
+            // Create and init 'Game Field' component.
             this._canvas = createCanvas();
             this.initCanvas();
 
@@ -56,17 +56,17 @@ function createGame() {
             this._header = createHeader();
             this.initHeader();
 
-            // Create and init 'Game start' component.
+            // Create and init 'Start Game' component.
             this._startBlock = createStartBlock();
             this.initStartBlock();
 
-            // Create and init 'Game end' component.
+            // Create and init 'End Game' component.
             this._endBlock = createEndBlock();
             this.initEndBlock();
         },
 
         /**
-         * Initiate 'Game field' component.
+         * Initiate 'Game Field' component.
          * @private
          */
         initCanvas: function(){
@@ -101,7 +101,7 @@ function createGame() {
         },
 
         /**
-         * Initiate 'Start game' component.
+         * Initiate 'Start Game' component.
          * @private
          */
         initStartBlock: function(){
@@ -123,16 +123,16 @@ function createGame() {
         },
 
         /**
-         * Initiate 'End game' component.
+         * Initiate 'End Game' component.
          * @private
          */
         initEndBlock: function(){
-            // Получить финишный блок.
+            // Get element.
             var endBlock = this.getEndBlock();
             endBlock.renderTo(this.getEl());
-            // Инициировать.
+            // Init it.
             endBlock.init();
-            // Задать обработчики.
+            // Set up button handlers.
             endBlock.onButtonClick(this.onRestartButtonClick, this);
         },
 
@@ -185,7 +185,7 @@ function createGame() {
         },
 
         /**
-         * Get 'Start game' component.
+         * Get 'Start Game' component.
          * @returns {StartBlock} - Component.
          */
         getStartBlock: function() {
@@ -193,7 +193,7 @@ function createGame() {
         },
 
         /**
-         * Get 'End game' component.
+         * Get 'End Game' component.
          * @returns {EndBlock} - Component.
          */
         getEndBlock: function() {
@@ -213,7 +213,7 @@ function createGame() {
                 this._rendered = true;
             }
 
-            // Render 'GameField'.
+            // Render 'Game Field'.
             canvas = this.getCanvas();
             canvas.render();
 
@@ -221,11 +221,11 @@ function createGame() {
             header = this.getHeader();
             header.render();
 
-            // Render 'Start game'.
+            // Render 'Start Game'.
             startBlock = this.getStartBlock();
             startBlock.render();
 
-            // Render 'End game'.
+            // Render 'End Game'.
             endBlock = this.getEndBlock();
             endBlock.render();
         },
@@ -244,11 +244,11 @@ function createGame() {
             canvas.reset();
             canvas.setHidden(true);
 
-            // Show 'Start game'.
+            // Show 'Start Game'.
             startBlock = this.getStartBlock();
             startBlock.setHidden(false);
 
-            // Hide 'End game'.
+            // Hide 'End Game'.
             endBlock = this.getEndBlock();
             endBlock.setHidden(true);
 
@@ -262,94 +262,96 @@ function createGame() {
          * Start game.
          */
         start: function() {
-            // сбрасываем игру.
+            // Reset game settings.
             this.reset();
-            // отрисовываем все.
+            // Redraw all.
             this.render();
         },
 
         /**
-         * Окончание игры.
+         * Game finish.
          */
         finish: function() {
             var canvas, header, endBlock;
 
-            // Выключаем игру.
+            // Turn off game.
             this._gameStarted = false;
 
-            // Сбрасываем игровое поле ипрячем его.
+            // Hide 'Game Field'.
             canvas = this.getCanvas();
             canvas.setHidden(true);
 
-            // Сбрасываем заголовок и прячем дочерние элементы.
+            // Hide 'Header's elements
             header = this.getHeader();
             header.hideChildren();
 
-            // Показываем финишный блок.
+            // Show 'End Game' block.
             endBlock = this.getEndBlock();
             endBlock.setHidden(false);
             endBlock.setScore(header.getScore().getValue());
 
-            // Перерисовать.
+            // Redraw all.
             this.render();
 
-            // Очищаем "уши".
+            // Clear timer.
             clearInterval(this._timerId);
         },
 
         /**
-         * Обработчик клика на шарик.
-         * @param {Ball} ball
-         * @param {Event} event
+         * Ball's click handler.
+         * @param {Ball} ball Ball element.
+         * @param {Event} event Click event.
          */
         onBallDelete: function(ball, event) {
             if (this._gameStarted) {
-                // получаем заголовок.
+                // пGet 'Header' component/
                 var header = this.getHeader();
 
-                // Если упали и шар не был "токсичен".
+                // If ball is dropped.
                 if ("drop" === event ) {
-                    if (ball.getType() !== "rem_life") {
-                        // Минус жизнь.
+                    // If ball not Killer.
+                    if (ball.getType() !== BallType.KILLER) {
+                        // Remove 1 life.
                         header.addLife(-1);
                     } else {
+                        // Else add score.
                         header.addScore(10);
                     }
-                } else {
-                    // Проверяем тип шара
+                } else { // If mouseover.
+                    // Check ball type.
                     switch (ball.getType()) {
-                        case "value_1": // добавляем очки.
+                        case BallType.TYPE_1: // Add score.
                             header.addScore(random(1));
                             break;
-                        case "value_2": // добавляем очки.
+                        case BallType.TYPE_2: // Add score.
                             header.addScore(random(2));
                             break;
-                        case "value_3": // добавляем очки.
+                        case BallType.TYPE_3: // Add score.
                             header.addScore(random(1, 3));
                             break;
-                        case "value_4": // добавляем очки.
+                        case BallType.TYPE_4: // Add score.
                             header.addScore(random(2, 4));
                             break;
-                        case "value_5": // добавляем очки.
+                        case BallType.TYPE_5: // Add score.
                             header.addScore(random(3, 5));
                             break;
-                        case "add_time": // добавляем время.
+                        case BallType.EXTRA_TIME: // Add extra time, sec.
                             header.addTime(15);
                             break;
-                        case "add_life": // добавляем жизнь, если жизней не 5.
+                        case BallType.EXTRA_LIFE: // Add extra life.
                             if (!header.isLifesEqual(5)) {
                                 header.addLife(1);
-                            } else {
+                            } else { // If total lives more then 5 then add score.
                                 header.addScore(10);
                             }
                             break;
-                        case "rem_life": // отбираем жизнь.
+                        case BallType.KILLER: // Remove 1 life.
                             header.addLife(-1);
                             break;
                     }
-                    // header.addScore(random(5));
                 }
 
+                // If no life than we finish game.
                 if (header.isLifesEqual(0)) {
                     this.finish();
                 } else {
@@ -359,63 +361,63 @@ function createGame() {
         },
 
         /**
-         * Обработчик кнопки "Старт".
+         * 'Start' button handler.'
          */
         onStartButtonClick: function() {
             if (!this._gameStarted) {
                 var canvas, header, startBlock, endBlock;
 
-                // Запускаем игру.
+                // Start gamem
                 this._gameStarted = true;
 
-                // Показываем игровое поле.
+                // Show 'Game Field' component.
                 canvas = this.getCanvas();
                 canvas.setHidden(false);
 
-                // Показываем счет и жизни.
+                // Show 'Header' component and it children.
                 header = this.getHeader();
                 header.showChildren();
 
-                // Прячем стартовый блок.
+                // Hide 'Start Game'.
                 startBlock = this.getStartBlock();
                 startBlock.setHidden(true);
 
-                // Прячем финишный блок.
+                // Hide 'End Game'.
                 endBlock = this.getEndBlock();
                 endBlock.setHidden(true);
 
-                // Запускаем таймер.
+                // Start game timer.
                 this._timerId = setInterval(this.onTimer, 1000, this);
 
-                // Перерисовать.
+                // Redraw all.
                 this.render();
 
-                // Рисуем шарики.
+                // Create balls and run game.
                 canvas.createBalls();
             }
         },
 
         /**
-         * Обработчик вызова по таймеру.
-         * @param {Game} self - Игра.
+         * Timer handler.
+         * @param {Game} self - Game component.
          */
         onTimer: function(self) {
             var header = self.getHeader();
 
-            // Уменьшаем счетчик.
+            // Remove 1 sec.
             header.addTime(-1);
 
-            // если счетчик = 0.
+            // If time out then we finish gae.
             if (header.isTimeOut()) {
                 self.finish();
             }
         },
 
         /**
-         * Обработчик клавиши рестарт.
-         * @param {EndBlock} endPanel - Финишный блок.
-         * @param {Event} event - Событие.
-         * @param {Game} game - Игровое поле.
+         * 'Restart' button handler.
+         * @param {EndBlock} endPanel - 'End game block/
+         * @param {Event} event - Event
+         * @param {Game} game - Game component
          */
         onRestartButtonClick: function(endBlock, event, game) {
             game.reset();

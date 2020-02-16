@@ -3,6 +3,9 @@
  * @returns {Ball}
  */
 function createBall() {
+    /**
+     * @typedef {Object} Ball The Ball object.
+     */
     return {
         // Геометрия объекта.
         _geometry: {
@@ -58,6 +61,8 @@ function createBall() {
             this._el.classList.add(config.class);
             this._el.classList.add(config.position);
             this._el.classList.add(config.type);
+
+            this._el.style.transform = "rotate(" + config.rotate + "deg)";
 
             // Устанавливаем тип шарика.
             this.setType(config.type);
