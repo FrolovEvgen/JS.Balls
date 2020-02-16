@@ -201,10 +201,15 @@ body {
   -webkit-transition: all 1s;
   -o-transition: all 1s;
   transition: all 1s;
+  background-image: url("../img/balls.png");
   top: 480px;
 /* Start position left. */
 /* Start position right. */
-/* Simple ball decoration. */
+/* TYPE 1 ball decoration. */
+/* TYPE 2 ball decoration */
+/* TYPE 3 ball decoration */
+/* TYPE 4 ball decoration */
+/* TYPE 4 ball decoration */
 /* 'Life' ball decoration. */
 /* 'Time' ball decoration. */
 /* 'Kill' ball decoration. */
@@ -215,13 +220,170 @@ body {
 .ball.right {
   left: 740px;
 }
-.ball.value_1,
-.ball.value_2,
-.ball.value_3,
-.ball.value_4,
-.ball.value_5 {
-  border-style: solid;
-  border-color: #c0c0c0;
+.ball.greenyellow {
+  background-position: -50px -150px;
+}
+.ball.chartreuse {
+  background-position: 0 -150px;
+}
+.ball.lawngreen {
+  background-position: -300px -100px;
+}
+.ball.lime {
+  background-position: -250px -100px;
+}
+.ball.limegreen {
+  background-position: -200px -100px;
+}
+.ball.palegreen {
+  background-position: -150px -100px;
+}
+.ball.lightgreen {
+  background-position: -100px -100px;
+}
+.ball.mediumspringgreen {
+  background-position: -50px -100px;
+}
+.ball.springgreen {
+  background-position: 0 -100px;
+}
+.ball.mediumseagreen {
+  background-position: -300px -50px;
+}
+.ball.seagreen {
+  background-position: -250px -50px;
+}
+.ball.forestgreen {
+  background-position: -200px -50px;
+}
+.ball.green {
+  background-position: -150px -50px;
+}
+.ball.darkgreen {
+  background-position: -100px -50px;
+}
+.ball.yellowgreen {
+  background-position: -50px -50px;
+}
+.ball.olivedrab {
+  background-position: 0 -50px;
+}
+.ball.olive {
+  background-position: -300px 0;
+}
+.ball.darkolivegreen {
+  background-position: -250px 0;
+}
+.ball.mediumaquamarine {
+  background-position: -200px 0;
+}
+.ball.darkseagreen {
+  background-position: -150px 0;
+}
+.ball.lightseagreen {
+  background-position: -100px 0;
+}
+.ball.darkcyan {
+  background-position: -50px 0;
+}
+.ball.teal {
+  background-position: 0 0;
+}
+.ball.gold {
+  background-position: -250px -200px;
+}
+.ball.yellow {
+  background-position: -200px -200px;
+}
+.ball.lightyellow {
+  background-position: -150px -200px;
+}
+.ball.lemonchiffon {
+  background-position: -100px -200px;
+}
+.ball.lightgoldenrodyellow {
+  background-position: -50px -200px;
+}
+.ball.papayawhip {
+  background-position: 0 -200px;
+}
+.ball.moccasin {
+  background-position: -300px -150px;
+}
+.ball.peachpuff {
+  background-position: -250px -150px;
+}
+.ball.palegoldenrod {
+  background-position: -200px -150px;
+}
+.ball.khaki {
+  background-position: -150px -150px;
+}
+.ball.darkkhaki {
+  background-position: -100px -150px;
+}
+.ball.indianred {
+  background-position: 0 -300px;
+}
+.ball.lightcoral {
+  background-position: -300px -250px;
+}
+.ball.salmon {
+  background-position: -250px -250px;
+}
+.ball.darksalmon {
+  background-position: -200px -250px;
+}
+.ball.lightsalmon {
+  background-position: -150px -250px;
+}
+.ball.crimson {
+  background-position: -100px -250px;
+}
+.ball.red {
+  background-position: -50px -250px;
+}
+.ball.firebrick {
+  background-position: 0 -250px;
+}
+.ball.darkred {
+  background-position: -300px -200px;
+}
+.ball.pink {
+  background-position: 0 0;
+}
+.ball.lightpink {
+  background-position: 0 0;
+}
+.ball.hotpink {
+  background-position: 0 0;
+}
+.ball.deeppink {
+  background-position: 0 0;
+}
+.ball.mediumvioletred {
+  background-position: 0 0;
+}
+.ball.palevioletred {
+  background-position: 0 0;
+}
+.ball.lightsalmon {
+  background-position: 0 0;
+}
+.ball.coral {
+  background-position: 0 0;
+}
+.ball.tomato {
+  background-position: 0 0;
+}
+.ball.orangered {
+  background-position: 0 0;
+}
+.ball.darkorange {
+  background-position: 0 0;
+}
+.ball.orange {
+  background-position: 0 0;
 }
 .ball.add_life {
   border-style: dashed;

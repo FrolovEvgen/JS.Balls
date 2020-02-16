@@ -55,11 +55,9 @@ function createBall() {
 
             // Добавляем стили.
             this._el.classList.add("ball");
-            this._el.classList.add(config.className);
+            this._el.classList.add(config.class);
+            this._el.classList.add(config.position);
             this._el.classList.add(config.type);
-
-            // устанавливаем цвет.
-            this.setColor(config.color);
 
             // Устанавливаем тип шарика.
             this.setType(config.type);

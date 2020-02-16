@@ -18,3 +18,14 @@ var defaultTimer = 60;
  * @type {number}
  */
 var maxBalls = 5;
+
+var BallType = {
+    KILLER: "rem_life",
+    EXTRA_TIME: "add_time",
+    EXTRA_LIFE: "add_life",
+    TYPE_1: "value_1",
+    TYPE_2: "value_2",
+    TYPE_3: "value_3",
+    TYPE_4: "value_4",
+    TYPE_5: "value_5"
+};

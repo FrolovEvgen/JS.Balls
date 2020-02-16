@@ -5,6 +5,9 @@
  * @returns {Canvas}
  */
 function createCanvas() {
+    /**
+     * @typedef {object} Canvas
+     */
     return {
 
         // Флаг отрисовки поля.
@@ -114,83 +117,6 @@ function createCanvas() {
             this._turn = 1;
         },
 
-        /**
-         * Создать случайный цвет шарика.
-         * @returns {BallConfig} - Значение цвета.
-         */
-        getRandomBallConfig: function() {
-            // Инициируем переменные.
-            var rnd, configList, config;
-            configList = [
-                { color: "LightSalmon",			type: "value_5"	},
-                { color: "Coral",				type: "value_5" },
-                { color: "Tomato" ,				type: "value_5" },
-                { color: "OrangeRed",			type: "value_5" },
-                { color: "DarkOrange",			type: "value_5" },
-                { color: "Orange",				type: "value_5" },
-                { color: "Beige",				type: "add_time" },
-                { color: "Pink",				type: "value_4" },
-                { color: "LightPink",			type: "value_4" },
-                { color: "HotPink",				type: "value_4" },
-                { color: "DeepPink",			type: "value_4" },
-                { color: "MediumVioletRed",		type: "value_4" },
-                { color: "PaleVioletRed",		type: "value_4" },
-                { color: "SteelBlue",			type: "add_life" },
-                { color: "IndianRed",			type: "value_3" },
-                { color: "LightCoral",			type: "value_3" },
-                { color: "Salmon",				type: "value_3" },
-                { color: "DarkSalmon",			type: "value_3" },
-                { color: "LightSalmon",			type: "value_3" },
-                { color: "Crimson",				type: "value_3" },
-                { color: "Red",					type: "value_3" },
-                { color: "FireBrick",			type: "value_3" },
-                { color: "DarkRed",				type: "value_3" },
-                { color: "White",				type: "add_time" },
-                { color: "Gold",				type: "value_2" },
-                { color: "Yellow",				type: "value_2" },
-                { color: "LightYellow",			type: "value_2" },
-                { color: "LemonChiffon",		type: "value_2" },
-                { color: "LightGoldenrodYellow",type: "value_2" },
-                { color: "PapayaWhip",			type: "value_2" },
-                { color: "Moccasin",			type: "value_2" },
-                { color: "PeachPuff",			type: "value_2" },
-                { color: "PaleGoldenrod",		type: "value_2" },
-                { color: "Khaki",				type: "value_2" },
-                { color: "DarkKhaki",			type: "value_2" },
-                { color: "Black",				type: "rem_life" },
-                { color: "GreenYellow",			type: "value_1" },
-                { color: "Chartreuse",			type: "value_1" },
-                { color: "LawnGreen",			type: "value_1" },
-                { color: "Lime",				type: "value_1" },
-                { color: "LimeGreen",			type: "value_1" },
-                { color: "PaleGreen",			type: "value_1" },
-                { color: "LightGreen",			type: "value_1" },
-                { color: "MediumSpringGreen",	type: "value_1" },
-                { color: "SpringGreen",			type: "value_1" },
-                { color: "MediumSeaGreen",		type: "value_1" },
-                { color: "SeaGreen",			type: "value_1" },
-                { color: "ForestGreen",			type: "value_1" },
-                { color: "Green",				type: "value_1" },
-                { color: "DarkGreen",			type: "value_1" },
-                { color: "YellowGreen",			type: "value_1" },
-                { color: "OliveDrab",			type: "value_1" },
-                { color: "Olive",				type: "value_1" },
-                { color: "DarkOliveGreen",		type: "value_1" },
-                { color: "MediumAquamarine",	type: "value_1" },
-                { color: "DarkSeaGreen",		type: "value_1" },
-                { color: "LightSeaGreen",		type: "value_1" },
-                { color: "DarkCyan",			type: "value_1" },
-                { color: "Teal",				type: "value_1" }
-            ];
-            // Получаем случайный номер цвета.
-            rnd = random(configList.length - 1);
-            // Получаем цвет/тип.
-            config = configList[rnd];
-            // Задаем начальное положение (лево/право)ж
-            config["className"] = random(10) > 5 ? "left" : "right";
-
-            return config;
-        },
 
         /**
          * Создать шарики.
@@ -237,6 +163,101 @@ function createCanvas() {
                 // Увеличиваем "сложность"
                 this._turn++;
             }
+        },
+
+        /**
+         * Get random ball configuration.
+         * @returns {BallConfig}
+         */
+        getRandomBallConfig: function() {
+            var ballConfig = { class: null, type: null, position: null, id: null};
+            ballConfig.type = this.getRandomBallType();
+            ballConfig.position = this.getRandomBallPosition();
+            ballConfig.class = this.getRandomBallClass(ballConfig.type);
+            return ballConfig;
+        },
+
+        /**
+         * Get random ball type.
+         * @returns {string}
+         */
+        getRandomBallType: function() {
+            var rnd,  ballTypes = [ BallType.TYPE_1, BallType.TYPE_1, BallType.TYPE_1,
+                BallType.TYPE_1, BallType.TYPE_1, BallType.TYPE_2,
+                BallType.TYPE_2, BallType.TYPE_2, BallType.TYPE_2,
+                BallType.TYPE_3, BallType.TYPE_3, BallType.TYPE_3,
+                BallType.TYPE_4, BallType.TYPE_4, BallType.TYPE_5,
+                BallType.EXTRA_LIFE, BallType.EXTRA_TIME, BallType.EXTRA_TIME,
+                BallType.KILLER, BallType.KILLER, BallType.KILLER];
+            // Get random type.
+            rnd = random(ballTypes.length - 1);
+            // Retyrn type value.
+            return ballTypes[rnd];
+        },
+
+        /**
+         * Get random ball start position.
+         * @returns {string} Position "left" or "right".
+         */
+        getRandomBallPosition: function() {
+            return random(10) > 5 ? "left" : "right";
+        },
+
+        /**
+         * Get random ball class from specified type.
+         *
+         * @param {string} ballType Ball type.
+         * @returns {string} Ball class;
+         */
+        getRandomBallClass: function(ballType) {
+            var rnd, ballClasses = {};
+
+            switch (ballType) {
+                case BallType.KILLER:
+                    return "removelife";
+
+                case BallType.EXTRA_TIME:
+                    return "extratime";
+
+                case BallType.EXTRA_LIFE:
+                    return "extralife";
+
+                case BallType.TYPE_1:
+                    ballClasses = ["greenyellow", "chartreuse",
+                    "lawngreen", "lime", "limegreen", "palegreen", "lightgreen",
+                    "mediumspringgreen", "springgreen", "mediumseagreen", "seagreen",
+                    "forestgreen", "green", "darkgreen", "yellowgreen", "olivedrab",
+                    "olive", "darkolivegreen", "mediumaquamarine", "darkseagreen",
+                    "lightseagreen", "darkcyan", "teal"];
+                    break;
+
+                case BallType.TYPE_2:
+                    ballClasses = ["gold", "yellow", "lightyellow",
+                    "lemonchiffon", "lightgoldenrodyellow", "papayawhip", "moccasin",
+                    "peachpuff", "palegoldenrod", "khaki", "darkkhaki"];
+                    break;
+
+                case BallType.TYPE_3:
+                    ballClasses = ["indianred", "lightcoral", "salmon",
+                    "darksalmon", "lightsalmon", "crimson", "red", "firebrick",
+                    "darkred"];
+                    break;
+
+                case BallType.TYPE_4:
+                    ballClasses = ["pink", "lightpink", "hotpink",
+                    "deeppink", "mediumvioletred", "palevioletred"];
+                    break;
+
+                case BallType.TYPE_5:
+                    ballClasses = ["lightsalmon", "coral", "tomato",
+                    "orangered", "darkorange", "orange"];
+                    break;
+
+                default:
+                    return "";
+            }
+            rnd = random(ballClasses.length - 1);
+            return ballClasses[rnd];
         },
 
         /**
